@@ -11,8 +11,7 @@ PoC para segunda edição da rinha de backend
 ## Executar
 
 ```bash
-docker buid -t rinha:2024-1
-docker compose up
+./rebuild.sh
 ```
 
 ### Outros
