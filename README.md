@@ -10,9 +10,8 @@ PoC para segunda edição da rinha de backend
 
 ## Executar
 
-``bash
+```bash
 docker buid -t rinha:2024-1
-# start database
 docker compose up
 ```
 
