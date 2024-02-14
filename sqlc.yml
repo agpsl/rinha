@@ -1,0 +1,10 @@
+version: "2"
+sql:
+  - engine: "postgresql"
+    queries: "sql/query.sql"
+    schema: "sql/init.sql"
+    gen:
+      go:
+        package: "database"
+        out: "database"
+        emit_db_tags: true
