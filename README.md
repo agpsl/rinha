@@ -1,6 +1,6 @@
 # Rinha de Backend, Segunda Edição: 2024/Q1 - Controle de Concorrência
 
-PoC para segunda edição da rinha de backend
+PoC para segunda edição da [Rinha de Backend](https://github.com/zanfranceschi/rinha-de-backend-2024-q1)
 
 ## Pré-requisitos
 
@@ -14,6 +14,6 @@ PoC para segunda edição da rinha de backend
 ./rebuild.sh
 ```
 
-### Outros
+### Observações
 
 Esse é meu primeiro projeto de backend e também meu primeiro contato com Go
