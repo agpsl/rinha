@@ -1,15 +1,13 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
-	"net/http"
 	"os"
+	"net/http"
+	"database/sql"
 
 	"github.com/agpsl/rinha/database"
-	"github.com/go-chi/chi/v5"
-	"github.com/go-chi/cors"
 	_ "github.com/lib/pq"
 )
 
@@ -40,30 +38,13 @@ func main() {
   if err != nil {
     log.Printf("Can't create database connection: %+v", err)
   }
-  // Router
-  router := chi.NewRouter()
-  
-  router.Use(cors.Handler(cors.Options{
-    AllowedOrigins: []string{"http://*"},
-    AllowedMethods: []string{"GET", "POST"},
-    AllowedHeaders: []string{"Accept", "Content-Type"},
-    ExposedHeaders: []string{"Link"},
-  }))
-  
-  // Rotas
-  router.Get("/status", handlerStatus)
-  router.Get("/clientes/{id}/extrato", apiCfg.handleGetBalance)
-  router.Post("/clientes/{id}/transacoes", apiCfg.handleTransaction)
 
-  // Servidor http
-  server := &http.Server{
-    Handler: router,
-    Addr: PORT,
-  }
+  // Routes
+  http.HandleFunc("GET /status", handlerStatus)
+  http.HandleFunc("GET /test", func(w http.ResponseWriter, r *http.Request) {w.Write([]byte("test"))})
+  http.HandleFunc("GET /clientes/{id}/extrato", apiCfg.handleGetBalance)
+  http.HandleFunc("POST /clientes/{id}/transacoes", apiCfg.handleTransaction)
   
   fmt.Println("Listening on", PORT)
-  srvErr := server.ListenAndServe()
-  if srvErr != nil {
-    log.Fatal(err)
-  }
+  http.ListenAndServe(PORT, nil)
 }

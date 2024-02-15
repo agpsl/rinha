@@ -5,8 +5,6 @@ import (
 	"net/http"
 	"strconv"
 	"time"
-
-	"github.com/go-chi/chi/v5"
 )
 
 type custInfoStruct struct {
@@ -29,7 +27,7 @@ type custLastTransStruct struct {
 
 func (apiCfg *apiConfig) handleGetBalance(w http.ResponseWriter, r *http.Request) {
   // Get customer ID from URL
-  customer_id, err := strconv.ParseInt(chi.URLParam(r, "id"), 10, 32)
+  customer_id, err := strconv.ParseInt(r.PathValue("id"), 10, 32)
   if err != nil {
     respondWithError(w, 400, fmt.Sprintf("Can't parse customer id: %v", err))
     return

@@ -9,7 +9,6 @@ import (
 	"strconv"
 
 	"github.com/agpsl/rinha/database"
-	"github.com/go-chi/chi/v5"
 )
 
 type requestDataStruct struct {
@@ -84,7 +83,7 @@ func processTransaction(ctx context.Context, db *sql.DB, q *database.Queries, cD
 
 func (apiCfg *apiConfig) handleTransaction(w http.ResponseWriter, r *http.Request) {
   // Get customer ID from URL
-  customer_id, err := strconv.ParseInt(chi.URLParam(r, "id"), 10, 32)
+  customer_id, err := strconv.ParseInt(r.PathValue("id"), 10, 32)
   if err != nil {
     respondWithJSON(w, 422, fmt.Sprintf("Can't parse customer id: %v", err))
     return
