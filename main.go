@@ -41,7 +41,6 @@ func main() {
 
   // Routes
   http.HandleFunc("GET /status", handlerStatus)
-  http.HandleFunc("GET /test", func(w http.ResponseWriter, r *http.Request) {w.Write([]byte("test"))})
   http.HandleFunc("GET /clientes/{id}/extrato", apiCfg.handleGetBalance)
   http.HandleFunc("POST /clientes/{id}/transacoes", apiCfg.handleTransaction)
   
